@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+<!-- extends는 제일 쎈 부분 -->
+{% block contents %}
+{% load staticfiles %}
+<body>
+<br>
+           
+    {% for blog in posts %}
+        <div class = "container">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">{{blog.title}}</h2>
+                    <h6 class="card-subtitle mb-2 text-muted">{{blog.pub_date}}</h6>
+                    <p class="card-text">조회수 : {{blog.post_hit}}</p>
+                    <p class="card-text">{{blog.summary}}</p>
+                    <a href="{% url 'detail' blog.id%}" class="card-link" style="font-family: 'Cute Font', cursive;">...more</a>
+                </div>
+            </div> <br>
+        </div>  
+    {%endfor%}
+
+    <div class = "container" style="text-align: center">
+        {%if posts.has_previous%}
+        <a href="?page=1"><img src="{% static 'fleft.jpg'%}" width="25" height="25" alt="First"></a>
+        <a href="?page={{posts.previous_page_number}}"><img src="{% static 'left.jpg'%}" width="25" height="25" alt="Previous"></a>
+        {%endif%}
+        
+        <span>{{posts.number}}</span>
+        <span>of</span>
+        <span>{{posts.paginator.num_pages}}</span>
+
+        {%if posts.has_next%}
+        <a href="?page={{posts.next_page_number}}"><img src="{% static 'right.png'%}" width="25" height="25" alt="Next"></a>
+        <a href="?page={{posts.paginator.num_pages}}"><img src="{% static 'fright.png'%}" width="25" height="25" alt="Last"></a>
+        {%endif%}
+        
+    </div>
+
+
+
+</body>
+{% endblock %}

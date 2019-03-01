@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block contents %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>My diet schedule</title>
+
+  <!-- Bootstrap -->
+  <link href="https://fonts.googleapis.com/css?family=Cute+Font&amp;subset=korean" rel="stylesheet"> 
+  <link href="{% static 'comingsoon/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'comingsoon/css/font-awesome.min.css' %}">
+  <link href="{% static 'comingsoon/css/style.css' %}" rel="stylesheet" />
+
+  <!-- =======================================================
+    Theme Name: ComingSoon
+    Theme URL: https://bootstrapmade.com/comingsoon-free-html-bootstrap-template/
+    Author: BootstrapMade
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+</head>
+
+<body>
+
+  <div class="title">
+    <div class="container">
+      <div class="col-lg-12 welcome">
+        <h1>MY DIET PLANNER</h1>
+        <p><span>이번엔 성공하자!!</span><br>목표 날짜까지 얼마나 남았지!?!</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="timer">
+    <div class="container">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="text-center">
+          <!-- Countdown dashboard start -->
+          <div id="countdown_dashboard">
+            <div class="countDown">
+              <div class="dash days_dash">
+                <span class="dash_title">days</span>
+                <div class="digit">0</div>
+                <div class="digit">0</div>
+              </div>
+
+              <div class="dash hours_dash">
+                <span class="dash_title">hours</span>
+                <div class="digit">0</div>
+                <div class="digit">0</div>
+              </div>
+
+              <div class="dash minutes_dash">
+                <span class="dash_title">minutes</span>
+                <div class="digit">0</div>
+                <div class="digit">0</div>
+              </div>
+
+              <div class="dash seconds_dash">
+                <span class="dash_title">seconds</span>
+                <div class="digit">0</div>
+                <div class="digit">0</div>
+              </div>
+            </div>
+          </div>
+          <!-- Countdown dashboard end -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="container">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="text-center">
+          <div id="countdown_dashboard">
+              <div class="col-lg-12 welcome">
+        djkfjd
+        </div>
+          </div>
+      </div>
+    </div>
+  </div> -->
+  {% if user.is_authenticated %} 
+  <h1> Calendar로 GO! </h1>
+  dfsdfsf
+  {% else %}
+  <div class="title">
+    <div class="container">
+      <div class="col-lg-12 welcome">
+        <div class = "loginbox">
+          {% if error %}
+          {{ error }}
+          <br>
+          <br>
+          {% endif %}     
+          <h1>Login</h1>
+          <form method="POST" action="{% url 'login'%}">
+              {% csrf_token %} 
+              <p>Username:</p>
+              <br>
+              <input name="username" type="text" value="">
+              <br>
+              <p>Password:</p>
+              <br>
+              <input name="password" type="password" value="">
+              <br>
+              <br>
+              <input class="btn btn-primary" type="submit" value="Login">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Footer start here -->
+  <footer>
+    <div class="col-md-6 col-md-offset-3">
+      <div class="text-center">
+        <div class="copyright">
+          &copy; Comming Soon Theme. All Rights Reserved.
+          <div class="credits">
+            <!--
+              All the links in the footer should remain intact.
+              You can delete the links only if you purchased the pro version.
+              Licensing information: https://bootstrapmade.com/license/
+              Purchase the pro version form: https://bootstrapmade.com/buy/?theme=ComingSoon
+            -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="{% static 'comingsoon/js/jquery-2.1.1.min.js' %}"}></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{% static 'comingsoon/js/bootstrap.min.js' %}"></script>
+  <script language="Javascript" type="text/javascript" src="{% static 'comingsoon/js/jquery.lwtCountdown-1.0.js' %}"></script>
+  <script language="Javascript" type="text/javascript" src="{% static 'comingsoon/js/misc.js' %}"></script>
+  <script src="{% static 'comingsoon/js/functions.js' %}"></script>
+
+</body>
+</html>
+
+{% endblock %}
